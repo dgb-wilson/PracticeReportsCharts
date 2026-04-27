@@ -22,7 +22,12 @@ Params <- list(
   NSWErrorBarColour = "#24505b",
   PathToDuckdb = "../PracticeReportsDataPrep/Data/PracticeReportData.duckdb",
   OutputFolder = "./Output",
-  TemplateFolder = "./Template"
+  TemplateFolder = "./Template",
+  
+  # Load spreadsheets for building text files
+  textfiles = readxl::read_xlsx("Template/TextFileElements.xlsx", sheet="TextFiles")|> filter(active),
+  valuecodes = readxl::read_xlsx("Template/TextFileElements.xlsx", sheet="ValueCodes"),
+  datalocations = readxl::read_xlsx("Template/TextFileElements.xlsx", sheet="DataLocations")
   
 )
 
@@ -39,6 +44,9 @@ MakeOutputFolders(PracticeList, Params)
 
 MakeCharts(practicelist=PracticeList ,
            params=Params)
+
+MakeTextFiles(practicelist=PracticeList,
+              params = Params)
 
 
 b <- Sys.time()

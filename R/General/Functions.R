@@ -14,4 +14,11 @@ connectdb <- function(){
   return(dbcon)
 }
 
-
+# useful function to get the correct ouput folder
+fGetOutputFolder <- function(PracticeIDTrue=NULL, PHN){
+  if(!is.null(PracticeIDTrue)){
+    file.path(Params$OutputFolder, PHN, PracticeIDTrue)
+  } else {
+    file.path(Params$OutputFolder, PHN)
+  }
+}

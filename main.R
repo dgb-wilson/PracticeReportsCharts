@@ -26,6 +26,17 @@ Params <- list(
   
 )
 
+sourceR <- function(folder) lapply(list.files(folder, pattern=".*R$"), function(x) source(file.path(folder, x)))
+
+lapply(c("R/General"), sourceR)
+
+con <- connectdb()
+
+PracticeList <-  dbGetQuery(con, 
+                            "SELECT * FROM GPEHR_PRACTICE ORDER BY PRACTICE_ID") 
+
+MakeOutputFolders(PracticeList, Params)
+
 
 b <- Sys.time()
 

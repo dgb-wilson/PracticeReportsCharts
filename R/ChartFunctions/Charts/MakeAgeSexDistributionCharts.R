@@ -257,7 +257,7 @@ PlotAgeSexDistribution <- function(i,
 }
 
 
-MakeAgeSexDistributionCharts <- function(practicelist, 
+TMakeAgeSexDistributionCharts <- function(practicelist, 
                                          params, 
                                          filename){
   

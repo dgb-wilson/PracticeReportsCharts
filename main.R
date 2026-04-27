@@ -22,13 +22,13 @@ Params <- list(
   NSWErrorBarColour = "#24505b",
   PathToDuckdb = "../PracticeReportsDataPrep/Data/PracticeReportData.duckdb",
   OutputFolder = "./Output",
-  TemplateFolder = "./Template",
+  TemplateFolder = "./Template"
   
 )
 
 sourceR <- function(folder) lapply(list.files(folder, pattern=".*R$"), function(x) source(file.path(folder, x)))
 
-lapply(c("R/General"), sourceR)
+lapply(c("R/General","R/ChartFunctions","R/ChartFunctions/Charts"), sourceR)
 
 con <- connectdb()
 
@@ -36,6 +36,9 @@ PracticeList <-  dbGetQuery(con,
                             "SELECT * FROM GPEHR_PRACTICE ORDER BY PRACTICE_ID") 
 
 MakeOutputFolders(PracticeList, Params)
+
+MakeCharts(practicelist=PracticeList ,
+           params=Params)
 
 
 b <- Sys.time()

@@ -33,7 +33,7 @@ Params <- list(
 
 sourceR <- function(folder) lapply(list.files(folder, pattern=".*R$"), function(x) source(file.path(folder, x)))
 
-lapply(c("R/General","R/ChartFunctions","R/ChartFunctions/Charts"), sourceR)
+lapply(c("R/General","R/ChartFunctions","R/ChartFunctions/Charts","R/TextFileFunctions"), sourceR)
 
 con <- connectdb()
 
@@ -42,15 +42,11 @@ PracticeList <-  dbGetQuery(con,
 
 MakeOutputFolders(PracticeList, Params)
 
-# MakeCharts(practicelist=PracticeList ,
-#            params=Params)
+MakeCharts(practicelist=PracticeList ,
+           params=Params)
 
 MakeTextFiles(practicelist=PracticeList,
               params = Params)
 
-
-b <- Sys.time()
-
-print(b - a)
 
 

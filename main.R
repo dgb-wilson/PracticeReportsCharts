@@ -42,8 +42,8 @@ PracticeList <-  dbGetQuery(con,
 
 MakeOutputFolders(PracticeList, Params)
 
-# MakeCharts(practicelist=PracticeList ,
-#            params=Params)
+MakeCharts(practicelist=PracticeList ,
+           params=Params)
 
 MakeTextFiles(practicelist=PracticeList,
               params = Params)
